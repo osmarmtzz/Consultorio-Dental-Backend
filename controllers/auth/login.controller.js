@@ -1,4 +1,3 @@
-// controllers/auth/login.controller.js
 const bcrypt = require('bcryptjs');
 const db = require('../../config/db');
 
@@ -13,7 +12,17 @@ const loginPaciente = async (req, res) => {
     }
 
     const usuario = rows[0];
-    const match = await bcrypt.compare(password, usuario.password);
+    const passwordEnBD = usuario.password;
+
+    let match = false;
+
+    // Si la contraseña en BD es un hash bcrypt (comienza con $2a$ o $2b$), usar compare
+    if (passwordEnBD.startsWith("$2")) {
+      match = await bcrypt.compare(password, passwordEnBD);
+    } else {
+      // Si es texto plano, comparar directamente
+      match = password === passwordEnBD;
+    }
 
     if (!match) {
       return res.status(401).json({ error: "Contraseña incorrecta" });

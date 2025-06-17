@@ -4,6 +4,7 @@ const obtenerCitasConEstadoPago = async (idPaciente) => {
   const [rows] = await db.query(`
     SELECT 
       citas.ID_Cita,
+      citas.ID_Paciente,                     -- ⬅️ AGREGA ESTA LÍNEA
       DATE_FORMAT(citas.Fecha, '%d/%m/%Y') AS Fecha,
       citas.Hora,
       citas.Motivo AS servicio,
@@ -26,5 +27,6 @@ const obtenerCitasConEstadoPago = async (idPaciente) => {
 
   return rows;
 };
+
 
 module.exports = { obtenerCitasConEstadoPago };
