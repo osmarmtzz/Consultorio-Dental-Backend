@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const RegisterPatientModel = require('../../models/registerPatient.model');
+const RegisterPatientModel = require('../models/registerPatient.model');
 
 const registrarPaciente = async (req, res) => {
   try {
@@ -23,7 +23,7 @@ const registrarPaciente = async (req, res) => {
       return res.status(409).json({ error: 'El correo ya está registrado' });
     }
 
-    const nombreCompleto = ${nombre} ${apellidos};
+const nombreCompleto = `${nombre} ${apellidos}`;
 
     // 🔒 Encriptar la contraseña antes de guardar
     const passwordHasheada = await bcrypt.hash(password, 10);
