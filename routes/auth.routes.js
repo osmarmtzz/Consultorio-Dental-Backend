@@ -21,4 +21,10 @@ router.get("/pagos/:id", getCitasYPagos);
 router.post("/registrar-pago", registrarPago);
 
 
+router.get('/test', (req, res) => {
+  res.json({ ok: true, msg: 'Conectado al backend desde otra PC ✅' });
+});
+
+module.exports = router;
+
 module.exports = router;
