@@ -3,12 +3,13 @@ const mysql = require('mysql2/promise');
 (async () => {
   try {
     const pool = await mysql.createPool({
-      host: '192.168.1.11',
+      host: '192.168.50.51',// ip de la base de datos 
       port: 3306,
-      user: 'appuser',
-      password: '123456',
+      user: 'prueba',
+      password: '123456789',
       database: 'bd_consultorio',
     });
+    
 
     const [rows] = await pool.query('SELECT 1');
     console.log('✅ Conexión exitosa', rows);
